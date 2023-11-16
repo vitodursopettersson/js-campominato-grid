@@ -51,6 +51,7 @@ function createElementBoard(tag, className, content) {
 
 // Generazione GameBoard
 function createGameboard() {
+    resetGameboard();
     const cellNumber = setDifficulty();
     const boardGame = document.querySelector('.board-game');
     for (let i = 1; i <= cellNumber; i++) {
@@ -58,4 +59,10 @@ function createGameboard() {
         const elementBoard = createElementBoard('div', 'cell', i);
         boardGame.append(elementBoard);
     }
+}
+
+// Reset Gameboard
+function resetGameboard() {
+    const boardGame = document.querySelector('.board-game');
+    boardGame.innerHTML = ''
 }
