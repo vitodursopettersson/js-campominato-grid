@@ -75,15 +75,15 @@ main {
     height: 500px;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
+
 }
 
-.cell {
+.board-game>* {
     border: 0.5px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
     cursor: pointer;
 }
 

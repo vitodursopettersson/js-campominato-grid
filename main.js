@@ -19,15 +19,16 @@
 // Play Button
 const playButton = document.getElementById('play-button');
 playButton.addEventListener('click', function () {
-    // let cellNumber = setDifficulty();
-    // console.log(`genero griglia composta da: ${cellNumber} celle`);
+    let cellNumber = setCellNumber();
+    console.log(`genero griglia composta da: ${cellNumber} celle`);
 
     createGameboard();
 });
 
-// Set Difficulty
-function setDifficulty(cellNumber) {
+// Set Cell Number
+function setCellNumber() {
     const difficulty = document.getElementById('set-difficulty').value;
+    let cellNumber
     if (difficulty === '3') {
         console.log('hai selezionato hard');
         cellNumber = 49
@@ -41,6 +42,20 @@ function setDifficulty(cellNumber) {
     return cellNumber
 }
 
+// Set Difficulty Class
+function setDifficultyClass() {
+    const difficulty = document.getElementById('set-difficulty').value;
+    let difficultyClass;
+    if (difficulty === '3') {
+        difficultyClass = 'cell--hard';
+    } else if (difficulty === '2') {
+        difficultyClass = 'cell--medium';
+    } else {
+        difficultyClass = 'cell--easy';
+    }
+    return difficultyClass
+}
+
 // Generazione di un elemento
 function createElementBoard(tag, className, content) {
     const element = document.createElement(tag);
@@ -52,12 +67,18 @@ function createElementBoard(tag, className, content) {
 // Generazione GameBoard
 function createGameboard() {
     resetGameboard();
-    const cellNumber = setDifficulty();
+    const difficultyClass = setDifficultyClass();
+    const cellNumber = setCellNumber();
+
     const boardGame = document.querySelector('.board-game');
+
     for (let i = 1; i <= cellNumber; i++) {
         console.log(`Creo cella numero ${i}`)
-        const elementBoard = createElementBoard('div', 'cell', i);
+        const elementBoard = createElementBoard('div', difficultyClass, i);
         boardGame.append(elementBoard);
+        elementBoard.addEventListener('click', function () {
+            console.log(`Hai cliccato la casella ${i}`)
+        })
     }
 }
 
