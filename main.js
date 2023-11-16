@@ -19,9 +19,10 @@
 // Play Button
 const playButton = document.getElementById('play-button');
 playButton.addEventListener('click', function () {
-    let cellNumber = setDifficulty();
-    console.log(`genero griglia composta da: ${cellNumber} celle`)
+    // let cellNumber = setDifficulty();
+    // console.log(`genero griglia composta da: ${cellNumber} celle`);
 
+    createGameboard();
 });
 
 // Set Difficulty
@@ -40,3 +41,21 @@ function setDifficulty(cellNumber) {
     return cellNumber
 }
 
+// Generazione di un elemento
+function createElementBoard(tag, className, content) {
+    const element = document.createElement(tag);
+    element.classList.add(className);
+    element.append(content);
+    return element
+}
+
+// Generazione GameBoard
+function createGameboard() {
+    const cellNumber = setDifficulty();
+    const boardGame = document.querySelector('.board-game');
+    for (let i = 1; i <= cellNumber; i++) {
+        console.log(`Creo cella numero ${i}`)
+        const elementBoard = createElementBoard('div', 'cell', i);
+        boardGame.append(elementBoard);
+    }
+}
